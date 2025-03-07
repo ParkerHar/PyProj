@@ -1,0 +1,57 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Data
+*.csv
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+env.bak/
+venv.bak/
+
+# VS Code settings and workspace files
+.vscode/
+*.code-workspace
+
+# Testing and linting caches
+.cache/
+.mypy_cache/
+.dmypy.json
+.pytest_cache/
+
+# Jupyter Notebook checkpoints (if applicable)
+.ipynb_checkpoints/
+
+# dotenv environment variable files
+.env
+.env.*
+# Optionally, ignore streamlit secrets if they are local and sensitive
+.streamlit/secrets.toml
+
+# Log files
+*.log
