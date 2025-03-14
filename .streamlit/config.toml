@@ -1,0 +1,7 @@
+[theme]
+base = "light"
+primaryColor = "#7CC7E6"              # Accent color (e.g., buttons, highlights)
+backgroundColor = "#BBE2F3"           # Main app background
+secondaryBackgroundColor = "#97CBE2"  # Sidebar or secondary panels
+textColor = "#1F323A" 
+text = "monospace"                # Primary text color

@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+from template_test import viso_chart
 
 def stats(data):
     '''Creates a table of statistics for the data
@@ -52,7 +53,11 @@ def interactive_plots(data):
         y = st.selectbox('Y value', sorted(df.columns))
     if st.button('Create Plot'):
         if chart_type == 'Scatter':
-            fig = px.scatter(df, x=x, y=y, color= y, color_continuous_scale='viridis')
+            fig = px.scatter(df, x=x, y=y, color= y, color_continuous_scale="ylorrd")
+            fig.update_layout(
+                title = f'{x} vs {y}'
+            )
+            fig.update_layout(viso_chart)
         elif chart_type == 'Histogram':
             fig = px.histogram(df, x=x, nbins=10)
             fig.update_layout(bargap=0.1)
@@ -60,6 +65,21 @@ def interactive_plots(data):
             fig = px.bar(df, x=x, y=y, color_continuous_scale='viridis')
         st.plotly_chart(fig)
 
+def map():
+    # Sample data
+    df = px.data.gapminder().query("year == 2007")
+
+    # Create a choropleth
+    fig = px.choropleth(
+        df, 
+        locations="iso_alpha",
+        color="lifeExp", 
+        hover_name="country",
+        color_continuous_scale=px.colors.sequential.Plasma,
+        projection="eckert4" 
+    )
+
+    st.plotly_chart(fig)
 
 st.title('Earthquake Data Explorer')
 
@@ -67,7 +87,7 @@ st.sidebar.title('Navigation')
 uploaded_file = st.sidebar.file_uploader("Please add your earthquake data file:") 
 if uploaded_file:
     df = pd.read_csv(uploaded_file)  # reading the file
-options = st.sidebar.radio('Pages', options=['Home', 'Stats', 'Data Header', 'Plots', 'Interactive Plots'])
+options = st.sidebar.radio('Pages', options=['Home', 'Stats', 'Data Header', 'Plots', 'Interactive Plots','Map'])
 
 if options == 'Stats':
     stats(df)
@@ -80,3 +100,5 @@ elif options == 'Home':
     st.write('The file uploader is also located in the sidebar :)')
 elif options == 'Interactive Plots':
     interactive_plots(df)
+elif options == 'Map':
+    map()
